@@ -1,4 +1,4 @@
-# Webdriver IO Automation Project in reference to SKY's Technical Test
+# Webdriver IO Automation Project for SKY's Technical Test
 
 ## Intro or highlights
 
@@ -14,8 +14,10 @@
   - step-definitions - one steps file which contain all the steps
 
 # Running of tests
-- There are several scripts that are in place in package.json file
- - npm run features - to run all features
+If you would like to run all features and view an html report then run the command-
+npm run features-reports
+
+- There are other scripts that are in place in package.json file
+ - npm run features - to run all features without running reports
  - npm run features-shopPageTests - to run shopPage Tests feature
  - npm run features-searchTests - to run search Tests feature
- - npm run features-reports - to run all features and generate an html file which will be located in reports

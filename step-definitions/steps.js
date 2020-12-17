@@ -1,7 +1,6 @@
 import {Given, When, Then} from 'cucumber';
 const assert = require('chai').assert;
-
-import homePage from '..//PageObjects/homePage';
+import homePage from '../PageObjects/homePage';
 import signInPage from '../PageObjects/signInPage';
 import dealsPage from '../PageObjects/dealsPage';
 
@@ -15,9 +14,9 @@ Given("I am on the {string} page", (page) => {
     }
     browser.url(url);
     browser.maximizeWindow();
-
+    
     homePage.handleCookies();
-
+    //above step is used to handle cookies
 })
 When("I navigate to Deals", () => {
 
@@ -26,6 +25,7 @@ When("I navigate to Deals", () => {
 Then("the user should be on the {string} page", (pageUrl) => {
     browser.pause(2000);
     let url = browser.getUrl();
+    //we are asserting if the page opened is https://www.sky.com/shop/offers
     assert.equal(url, pageUrl);
 })
 When("I try to sign in with invalid credentials", () => {
@@ -44,10 +44,10 @@ Then("I see a list of offers with a price to it", () => {
     //compare first offer price
     assert.equal(dealsPage.getOffer1Price(),offersPriceList[0]);
 
-    //compare first offer price
+    //compare second offer price
      assert.equal(dealsPage.getOffer2Price(),offersPriceList[1]);
 
-    //compare first offer price
+    //compare third offer price
     assert.equal(dealsPage.getOffer3Price(),offersPriceList[2]);
     
 })

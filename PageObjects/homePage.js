@@ -21,10 +21,11 @@ class HomePage {
     }
     
     //define page functions/actions
-    handleCookies() {
-        let iframe = $('#sp_message_iframe_207015');
+    //This function is used to handle cookie, where if cookie exists then accept button is clicked
+    handleCookies() {      
 
-        if (iframe !== undefined) {
+        if ($('#sp_message_iframe_207015').isExisting()) {
+            let iframe = $('#sp_message_iframe_207015');
             //switch to frame
             browser.switchToFrame(iframe);
             $("//button[contains(text(),'Agree')]").click()
