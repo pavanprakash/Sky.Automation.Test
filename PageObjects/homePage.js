@@ -1,36 +1,57 @@
+class HomePage {
+    // define page elements
 
-
- class HomePage  {
-    //define page elements
-    get dealLink() { return $("a[data-tracking-label='masthead_visit_primary_deals_link']") }
-    get dealLink() { return $("//a[contains(text(),'My Account')]") }
-    
-        get modal() {return $('.type-modal')}
-    open() {
-    //    super.open('/');
-        browser.url("https://www.sky.com/");
-        browser.pause(5000);
+    get dealLink() {
+        return $("//a[contains(text(),'Deals')]")
     }
-   
-    // handleCookies() {
-    //     // let modal = $('.type-modal');
-        
-    //     if(this.modal !== undefined){
-    //         browser.$(this.modal).$("[title = 'Agree']").click()
-    //     }
-    //     else {
-    //         console.error('Unable to find the modal')
-    //     }
-    //     browser.waitUntil(() => {
-    //         let myAccount = $("//a[contains(text(),'My Account')]");
-    //         return myAccount.isDisplayed;
-    //     },20000,'Cookies werent accepted')
-    // }
+    get signInLnk() {
+        return $("a[data-test-id = 'sign-in-link']")
+    }
+    get searchIcon() {
+        return $('.search-toggle__icon');
+    }
+    get searchBox(){
+        return $("input[data-test-id = 'input-box']");
+    }
+    get searchContainer() {
+        return $("#search-results-container");
+    }
+    get editorialSection() {
+        return $("div[data-test-id = 'editorial-section']");
+    }
     
-    
-    clickDealLink(){
+    //define page functions/actions
+    handleCookies() {
+        let iframe = $('#sp_message_iframe_207015');
+
+        if (iframe !== undefined) {
+            //switch to frame
+            browser.switchToFrame(iframe);
+            $("//button[contains(text(),'Agree')]").click()
+            browser.pause(2000);
+            browser.switchToParentFrame();
+        } 
+        browser.waitUntil(() => {
+            let myAccount = $("//a[contains(text(),'Deals')]");
+            return myAccount.isDisplayed;
+        }, 20000, 'Cookies werent accepted')
+    }
+
+
+    clickDealLink() {
         this.dealLink.click();
+
+    }
+    clickOnSignIn() {
+        this.signInLnk.click();
+    }
+    checkEditorialSection(){
+        let displayed;
+        browser.waitUntil(() => {
+            displayed = this.editorialSection.isDisplayed()
+            return displayed;
+        },5000,'Unable to see search Container!');
+        return displayed;
     }
 }
-// export default new HomePage();
-export const homePage = new HomePage();
+export default new HomePage();
