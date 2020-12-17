@@ -39,6 +39,8 @@ Then("I should see a text saying that {string}", (expectedMsg) => {
     assert.equal(text,expectedMsg);
 })
 Then("I see a list of offers with a price to it", () => {
+    // I am comparing exact prices here as stated in the test, in an ideal
+    // scenario we wouldnt be comparing exact prices as they are bound to change.
     let offersPriceList = ['£39','£27','£46'];
     
     //compare first offer price
