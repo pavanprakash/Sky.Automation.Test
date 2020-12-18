@@ -3,6 +3,7 @@
 ## Intro or highlights
 
 - Webdriver IO has been used to Test several features outlined to test sky.com
+- Works with node v12.16.1 or higher
 - Cucumber has been used as a framework to implement BDD
 - Reporting style is a json format report which is then converted in html.
 - Page Object Model has been implemented to provide a layer of abstraction
